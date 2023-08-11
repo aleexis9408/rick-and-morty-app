@@ -1,6 +1,6 @@
 // screens/CharacterListScreen.tsx
 
-import React from 'react';
+import React, {Suspense} from 'react';
 import {
   View,
   Text,
@@ -12,23 +12,30 @@ import CharacterCard from '../components/CharacterCard';
 import {useCharacterList} from '../hooks/useCharacterList';
 
 const CharacterListScreen: React.FC = () => {
-  const {characters, loading} = useCharacterList();
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Character List</Text>
-      {loading ? (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      ) : (
-        <FlatList
-          data={characters}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => <CharacterCard character={item} />}
-        />
-      )}
+      <Suspense
+        fallback={
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        }>
+        <CharacterList />
+      </Suspense>
     </View>
+  );
+};
+
+const CharacterList: React.FC = () => {
+  const {characters} = useCharacterList();
+
+  return (
+    <FlatList
+      data={characters}
+      keyExtractor={item => item.id.toString()}
+      renderItem={({item}) => <CharacterCard character={item} />}
+    />
   );
 };
 

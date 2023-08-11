@@ -1,7 +1,14 @@
 // screens/OriginScreen.tsx
 
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import OriginCard from '../components/OriginCard';
 import {useOriginDetails} from '../hooks/useOriginDetails';
@@ -14,7 +21,9 @@ const OriginScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {loading ? (
-        <Text>Loading...</Text>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
       ) : originDetails ? (
         <View>
           <OriginCard origin={originDetails} />
@@ -22,8 +31,13 @@ const OriginScreen: React.FC = () => {
           <FlatList
             data={originDetails.residents}
             keyExtractor={item => item.id.toString()}
+            numColumns={2}
             renderItem={({item}) => (
               <View style={styles.residentContainer}>
+                <Image
+                  source={{uri: item.image}}
+                  style={styles.residentImage}
+                />
                 <Text>{item.name}</Text>
               </View>
             )}
@@ -52,6 +66,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginTop: 8,
+    flex: 0.5,
+  },
+  residentImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 8,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

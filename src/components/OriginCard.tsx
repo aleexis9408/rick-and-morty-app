@@ -27,17 +27,6 @@ const OriginCard: React.FC<OriginCardProps> = ({origin}) => {
       <Text>Name: {origin.name}</Text>
       <Text>Type: {origin.type}</Text>
       <Text>Dimension: {origin.dimension}</Text>
-      <Text>Residents:</Text>
-      <FlatList
-        data={origin.residents}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
-          <View style={styles.residentContainer}>
-            <Image source={{uri: item.image}} style={styles.residentImage} />
-            <Text>{item.name}</Text>
-          </View>
-        )}
-      />
     </View>
   );
 };
@@ -60,12 +49,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
-  },
-  residentImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 8,
   },
 });
 
