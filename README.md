@@ -13,7 +13,7 @@ Esta es una aplicación de muestra que utiliza React Native para mostrar informa
 1. Clona este repositorio a tu máquina local:
 
 ``
-git clone https://github.com/tu-usuario/rick-and-morty-app.git
+git clone https://github.com/aleexis9408/rick-and-morty-app.git
 ``
 
 2. Navega al directorio del proyecto:
