@@ -4,9 +4,8 @@ Esta es una aplicación de muestra que utiliza React Native para mostrar informa
 
 ## Requisitos del Ambiente
 
-- Node.js (v14.17.6 recomendado)
-- npm (v6.14.15 recomendado)
-- React Native CLI (v0.64.3 recomendado)
+- Node.js (v20.3.0 recomendado)
+- React Native CLI (v0.72 recomendado)
 
 ## Instalación
 
